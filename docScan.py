@@ -76,9 +76,12 @@ while True:
 
     img_thresh = preProcessing(img)
     bestContour = detectContours(img_thresh)
-    img_warped = detectWarp(img,bestContour)
 
-    cv2.imshow("Output", img_warped)
+    if bestContour.size != 0:
+        img_warped = detectWarp(img,bestContour)
+        cv2.imshow("Output", img_warped)
+    else:
+        cv2.imshow("Output", img)
 
 
     if cv2.waitKey(1) & 0xFF == ord('q'):
